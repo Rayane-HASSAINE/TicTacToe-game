@@ -10,7 +10,7 @@ const TicTacToe = () => {
 
     const [count, setCount] = useState(0)
 
-    const toggle = ( num) => {
+    const toggle = (num) => {
         if (boite[num] !== "") {
             return;
         }
@@ -29,9 +29,9 @@ const TicTacToe = () => {
     };
 
     const won = (mirou) => {
-  alert(`Le joueur ${mirou} a gagné !`);
-  // Ou toute autre logique, comme bloquer le jeu, afficher un message, etc.
-};
+        alert(`Le joueur ${mirou} a gagné !`);
+        // Ou toute autre logique, comme bloquer le jeu, afficher un message, etc.
+    };
 
     const checkWin = (boite) => {
         const winCondition =
@@ -46,30 +46,29 @@ const TicTacToe = () => {
         for (const [a, b, c] of winCondition) if (boite[a] && boite[a] === boite[b] && boite[b] === boite[c]) {
             won(boite[a])
             return
+
         }
 
+
+
+        return (
+            <div className='container'>
+                <h1 className="title">Tic Tac Toe gaming <span>React</span></h1>
+                <div className='board'>
+                    {boite.map((val, index) => (
+                        <div
+                            key={index}
+                            className="boxes"
+                            onClick={() => toggle(index)}
+                        >
+                            {val === "X" && <img src={cross_image} alt="X" />}
+                            {val === "O" && <img src={circle_image} alt="O" />}
+                        </div>
+                    ))}
+                </div>
+                <button className='reset'>Reset</button>
+            </div>
+        )
     }
-
-
-
-    return (
-       <div className='container'>
-  <h1 className="title">Tic Tac Toe gaming <span>React</span></h1>
-  <div className='board'>
-    {boite.map((val, index) => (
-      <div
-        key={index}
-        className="boxes"
-        onClick={() => toggle(index)}
-      >
-        {val === "X" && <img src={cross_image} alt="X" />}
-        {val === "O" && <img src={circle_image} alt="O" />}
-      </div>
-    ))}
-  </div>
-  <button className='reset'>Reset</button>
-</div>
-    )
 }
-
-export default TicTacToe
+    export default TicTacToe
